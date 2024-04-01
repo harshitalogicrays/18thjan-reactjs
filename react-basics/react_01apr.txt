@@ -1,0 +1,58 @@
+function fun(){
+    return ["hello", "welcome"]
+}
+
+fun()
+
+// react component -
+
+function Fun(){
+    let a=10
+    a=20
+    function fun1(){alert("fun1")}
+    return (
+            <div>
+                <h1 onClick={fun1}>Hello</h1>
+                <h2>{a}</h2>
+            </div>
+        ) 
+}
+
+<Fun></Fun>
+<Fun/>
+
+
+HTML+JS = JSX
+
+1. html - small letters  - <h1></h1>
+
+2. component - pascal case and use it as tag <Fun></Fun> 
+
+3. all tags paired tag - <br></br> or <br/>
+
+4. onClick - camel case 
+
+5. class => className 
+6. <label for ==> htmlFor 
+
+component - reusablility of code
+1. function component 
+2. class component 
+
+
+App - Body 
+Body - <div> <h1></h1></div>
+        <p></p>
+        <table></table>
+
+=================================
+
+property - props
+
+parent comp to child comp we can pass data using props 
+
+App -> <FirstFuncomp username="Happy" address="Pune"/>
+
+react is unidirectional - one way - parent to child 
+
+
