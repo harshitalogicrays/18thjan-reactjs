@@ -60,12 +60,12 @@ import React from 'react'
 const FirstFuncomp = ({username,address,...props}) => {
     // console.log(props) //{username:"Happy" address:"Pune"}
   return (
-    <div>
+    <React.Fragment>
       <h1>first fun component arrow fun</h1>
       <h2>{username}</h2>
       <h2>{address}</h2>
       <h2>{props.mobile}</h2>
-    </div>
+    </React.Fragment>
   )
 }
 export default FirstFuncomp

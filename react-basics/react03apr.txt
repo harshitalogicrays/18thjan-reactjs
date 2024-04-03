@@ -1,0 +1,42 @@
+props are read only
+children props
+map - list rendering 
+install bootstrap and bootstrap-icons
+
+<React.Fragment></React.Fragment>
+
+import {Fragment} from 'react'
+<Fragment></Fragment>
+
+<></> => shorthand of Fragment 
+
+events - camel case 
+onClick , onBlur, onChange , onMouseMove, onKeyPress etc.
+
+state -  
+in function component - useState hook 
+useRef , useEffect, useReducer, useCallback,useMemo,useContext etc.
+custom hook 
+
+
+====================================================
+state
+condtions 
+list rendering 
+========================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
