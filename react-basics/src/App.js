@@ -3,11 +3,14 @@ import EventDemo from './components/02day/EventDemo';
 import Listrendering from './components/02day/Listrendering';
 import Propsdemoinfun from './components/02day/Propsdemoinfun';
 import Statedemo from './components/02day/Statedemo';
+import Addition from './components/03day/Addition';
+import Register from './components/03day/Register';
+import Statedemoinfun from './components/03day/Statedemoinfun';
 import FirstFuncomp from './components/FirstFuncomp';
 
 function App() {
   return (
-    <div className="App">
+    <div>
         <h1 className='text-primary'>Hello React</h1>
        {/* <FirstFuncomp mobile="99999999"></FirstFuncomp>
         <input type="text" id="abc"/>
@@ -23,7 +26,13 @@ function App() {
 
 
         {/* <EventDemo/> */}
-        <Statedemo/>
+        {/* <Statedemo/> */}
+
+        {/* <Statedemoinfun address="Pune"/> */}
+
+        {/* <Addition/> */}
+
+        <Register/>
     </div>
   );
 }

@@ -1,0 +1,31 @@
+css - 
+1. css file - .css file 
+import 'pathofcss file"
+if we have included it in parent then all the children can access that css file without importing.
+
+2. inline - 
+
+<h1 style={{color:'',backgroundColor:'',......}}
+
+3. css variable=
+const cssvar = {color:'',backgroundColor:'',......}
+
+<h1 style={cssvar}></h1>
+
+4. css module file 
+5. bootstrap 
+6. react bootstrap 
+7. styled-components 
+8. custom css components
+
+====================================================================
+let obj={num1:'',num2:''}
+
+obj={...obj,num1:10} =>{num2:'',num1:10}
+
+obj={...obj,num2:20} // {num2:20,num1:10}
+=================================================================
+
+conditional rendering 
+list rendering - Array of objects - using components (props)
+form validations 
