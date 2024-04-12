@@ -1,0 +1,14 @@
+conditional rendering - 
+1. if else 
+2. javascript variable 
+3. ternary - ?: (condition ? true : false )
+4. short circuit - && (condition && true)
+
+
+if(){return()}
+else {return()}
+
+=================================================
+form validations 
+form validations 
+css 

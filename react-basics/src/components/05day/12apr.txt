@@ -1,0 +1,12 @@
+let Student={fname:''}
+Student.lname=""
+Student.age = 
+Student ={fname:'',lname:'',age:''}
+
+
+formik library  - 
+let {fname}=Student
+=================================================================================
+CSS part 
+useCallback hook 
+useRef
