@@ -1,0 +1,25 @@
+useEffect hook - 
+
+useCallback hook -
+
+useMemo hook - 
+
+useCallback vs useMemo 
+
+=======================================================================
+react forms -
+1. controlled components - react manages them (state and onChange)
+2. uncontrolled components - DOM itself manages -
+reference - ref (document.getElementById())
+
+useRef() hook - returns current property -> value,name,id,style,focus() etc.
+
+state - variable , we declare it 
+
+======================================================================
+fowardRef()
+CSS 
+
+class component 
+routing 
+

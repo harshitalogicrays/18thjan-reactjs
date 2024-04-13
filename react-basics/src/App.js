@@ -13,6 +13,7 @@ import ProductRendering from './components/04day/ProductRendering';
 import Products from './components/04day/Products';
 import FormValidation from './components/05day/FormValidation';
 import FormValidationsReactHookForm from './components/05day/FormValidationsReactHookForm';
+import UseCallbackDemo from './components/06day/UseCallbackDemo';
 
 function App() {
   let [isLoggedIn,setIsLoggedIn]=useState(false)
@@ -56,7 +57,8 @@ function App() {
 
         {/* <FormValidation/> */}
 
-        <FormValidationsReactHookForm/>
+        {/* <FormValidationsReactHookForm/> */}
+        <UseCallbackDemo/>
     </div>
   );
 }
