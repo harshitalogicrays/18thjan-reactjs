@@ -14,12 +14,18 @@ import Products from './components/04day/Products';
 import FormValidation from './components/05day/FormValidation';
 import FormValidationsReactHookForm from './components/05day/FormValidationsReactHookForm';
 import UseCallbackDemo from './components/06day/UseCallbackDemo';
+import RefDemo from './components/07day/RefDemo';
+import ParentRef from './components/07day/ParentRef';
+import CssinReact1 from './components/07day/CssinReact';
+import cssmodule from './App.module.css'
+import { MyButton } from './components/07day/MyCssComponents';
 
 function App() {
   let [isLoggedIn,setIsLoggedIn]=useState(false)
   return (
     <div className='container mt-5'>
         <h1 className='text-primary'>Hello React</h1>
+        <h2 className={cssmodule.error}>Css module demo</h2>
        {/* <FirstFuncomp mobile="99999999"></FirstFuncomp>
         <input type="text" id="abc"/>
        <FirstFuncomp username="Happy" address="Pune"/>
@@ -58,7 +64,18 @@ function App() {
         {/* <FormValidation/> */}
 
         {/* <FormValidationsReactHookForm/> */}
-        <UseCallbackDemo/>
+        {/* <UseCallbackDemo/> */}
+
+        {/* <RefDemo/> */}
+
+        {/* <ParentRef/> */}
+
+        <CssinReact1/>
+
+        <br/>
+        <MyButton>Click 
+          App
+        </MyButton>
     </div>
   );
 }

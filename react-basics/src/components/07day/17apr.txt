@@ -1,0 +1,35 @@
+ref
+forwardref
+css -
+1. inline 
+2. css variable 
+3. css file - .css file 
+import 'path'
+
+imported in parent then all child components can access that css file without importing it.
+
+4. css module file - .module.css 
+import aliasname from 'path'
+
+<h1 className={cssmodule.error}></h1>
+have to import it. 
+
+5. bootstrap 
+6. React bootstrap 
+    div className="container 
+    <Container></Container>
+    <Form.Control>
+    <Button>
+    <Card>
+    Row , Col , Nav , 
+
+7. styled-components 
+    npm i styled-components
+
+    ===============================
+    Our own components 
+    class components 
+
+    
+
+
