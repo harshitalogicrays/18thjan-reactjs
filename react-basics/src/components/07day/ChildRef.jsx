@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react'
-import Video from '../../assets/video.mp4'
+// import Video from '../../assets/video.mp4'
 const ChildRef =forwardRef(
     (props,ref) => {
         return (
@@ -11,9 +11,9 @@ const ChildRef =forwardRef(
                        </div>
                */}
 
-        <video style={{width:'300px',height:'200px'}} ref={ref}>
+        {/* <video style={{width:'300px',height:'200px'}} ref={ref}>
             <source src={Video}></source>
-        </video>
+        </video> */}
           </>
       )
       }

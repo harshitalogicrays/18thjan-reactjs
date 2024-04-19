@@ -1,0 +1,5 @@
+functional component  -  hooks 
+
+class component - this keyword 
+state 
+state change 

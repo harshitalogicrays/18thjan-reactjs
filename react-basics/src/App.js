@@ -19,9 +19,14 @@ import ParentRef from './components/07day/ParentRef';
 import CssinReact1 from './components/07day/CssinReact';
 import cssmodule from './App.module.css'
 import { MyButton } from './components/07day/MyCssComponents';
+import MyOwnButton from './components/08day/MyOwnButton';
+import MyOwnTextBox from './components/08day/MyOwnTextBox';
+import MyInputGroup from './components/08day/MyInputGroup';
+import ClassCompDemo from './components/08day/ClassCompDemo';
 
 function App() {
   let [isLoggedIn,setIsLoggedIn]=useState(false)
+  let [name,setName]=useState("")
   return (
     <div className='container mt-5'>
         <h1 className='text-primary'>Hello React</h1>
@@ -70,12 +75,38 @@ function App() {
 
         {/* <ParentRef/> */}
 
-        <CssinReact1/>
+        {/* <CssinReact1/>
 
         <br/>
         <MyButton>Click 
           App
-        </MyButton>
+        </MyButton> */}
+
+        {/* <MyOwnButton class1="btn btn-primary me-2" id="btn1" fun={()=>alert("button clicked")}>
+          Logout
+        </MyOwnButton>
+
+        <MyOwnButton class1="btn btn-danger" disabled type="button" >Copy</MyOwnButton> */}
+
+        {/* <MyOwnTextBox type="text" placeholder="enter name" required
+        value={name}
+        onChange={(e)=>setName(e.target.value)}></MyOwnTextBox>
+
+
+        <MyOwnTextBox type="date" ></MyOwnTextBox>
+
+        <MyOwnTextBox type="text" placeholder="enter name" readonly
+        value="1234"></MyOwnTextBox> */}
+
+
+        {/* <MyInputGroup position="append">
+          <i className='bi bi-envelope'></i>
+        </MyInputGroup>
+        <MyInputGroup position="prepend"></MyInputGroup>
+        <MyInputGroup position="both"></MyInputGroup>
+        <MyInputGroup ></MyInputGroup> */}
+
+        <ClassCompDemo username="Happy" address="Pune"/>
     </div>
   );
 }

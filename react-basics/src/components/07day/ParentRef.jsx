@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import ChildRef from './ChildRef'
-import Video from '../../assets/video.mp4'
+// import Video from '../../assets/video.mp4'
 const ParentRef = () => {
     let focusRef=useRef()
     let videoRef=useRef()
