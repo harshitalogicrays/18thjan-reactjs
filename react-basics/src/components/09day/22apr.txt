@@ -1,0 +1,5 @@
+life cycle methods -
+1. mounting phase 
+2. updating phase 
+3. unmouting phase 
+4. error handling 

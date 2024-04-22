@@ -23,6 +23,8 @@ import MyOwnButton from './components/08day/MyOwnButton';
 import MyOwnTextBox from './components/08day/MyOwnTextBox';
 import MyInputGroup from './components/08day/MyInputGroup';
 import ClassCompDemo from './components/08day/ClassCompDemo';
+import ClassCompDemo1 from './components/09day/ClassCompDemo1';
+import Forminclass from './components/09day/Forminclass';
 
 function App() {
   let [isLoggedIn,setIsLoggedIn]=useState(false)
@@ -81,8 +83,8 @@ function App() {
         <MyButton>Click 
           App
         </MyButton> */}
-
-        {/* <MyOwnButton class1="btn btn-primary me-2" id="btn1" fun={()=>alert("button clicked")}>
+{/* 
+        <MyOwnButton class1="btn btn-primary me-2" id="btn1" fun={()=>alert("button clicked")}>
           Logout
         </MyOwnButton>
 
@@ -106,7 +108,10 @@ function App() {
         <MyInputGroup position="both"></MyInputGroup>
         <MyInputGroup ></MyInputGroup> */}
 
-        <ClassCompDemo username="Happy" address="Pune"/>
+        {/* <ClassCompDemo username="Happy" address="Pune"/> */}
+
+        {/* <ClassCompDemo1 username="Happy" address="Pune"></ClassCompDemo1> */}
+        <Forminclass/>
     </div>
   );
 }
