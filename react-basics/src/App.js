@@ -25,14 +25,29 @@ import MyInputGroup from './components/08day/MyInputGroup';
 import ClassCompDemo from './components/08day/ClassCompDemo';
 import ClassCompDemo1 from './components/09day/ClassCompDemo1';
 import Forminclass from './components/09day/Forminclass';
+import LifeCycleMethodsDemo from './components/10day/LifeCycleMethodsDemo';
+import { Route, Routes } from 'react-router-dom';
+import Home from './components/10day/Home';
+import { Container } from 'react-bootstrap';
+import Pagenotfound from './components/10day/Pagenotfound';
+import DefaultLayout from './components/10day/DefaultLayout';
 
 function App() {
   let [isLoggedIn,setIsLoggedIn]=useState(false)
   let [name,setName]=useState("")
   return (
+    <>
+      <Routes>
+          <Route path='/' element={<DefaultLayout><Home/></DefaultLayout>}></Route>
+          <Route path='/products' element={<DefaultLayout><Products/></DefaultLayout>}/>
+          <Route path='/reg' element={<Register/>}/>
+
+          <Route path="*" element={<Pagenotfound/>}/>
+      </Routes>
+
     <div className='container mt-5'>
-        <h1 className='text-primary'>Hello React</h1>
-        <h2 className={cssmodule.error}>Css module demo</h2>
+        {/* <h1 className='text-primary'>Hello React</h1>
+        <h2 className={cssmodule.error}>Css module demo</h2> */}
        {/* <FirstFuncomp mobile="99999999"></FirstFuncomp>
         <input type="text" id="abc"/>
        <FirstFuncomp username="Happy" address="Pune"/>
@@ -111,8 +126,19 @@ function App() {
         {/* <ClassCompDemo username="Happy" address="Pune"/> */}
 
         {/* <ClassCompDemo1 username="Happy" address="Pune"></ClassCompDemo1> */}
-        <Forminclass/>
+        {/* <Forminclass/> */}
+
+        {/* <button
+          type="button"
+          class="btn btn-primary"
+          onClick={()=>setIsLoggedIn(!isLoggedIn)}
+        >click </button>
+
+        {isLoggedIn &&  <LifeCycleMethodsDemo/>} */}
+       
     </div>
+    </>
+
   );
 }
 
