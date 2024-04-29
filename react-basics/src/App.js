@@ -33,12 +33,26 @@ import Pagenotfound from './components/10day/Pagenotfound';
 import DefaultLayout from './components/10day/DefaultLayout';
 import Routing from './Routing';
 import ContextforCart from './components/11day/ContextforCart';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   let [isLoggedIn,setIsLoggedIn]=useState(false)
   let [name,setName]=useState("")
   return (
     <>
+    <ToastContainer
+position="top-left"
+autoClose={2000}
+hideProgressBar={true}
+newestOnTop={false}
+closeOnClick
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+theme="colored"
+/>
     <ContextforCart>
       <Routing/>
       <div className='container mt-5'>

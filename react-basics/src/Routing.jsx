@@ -6,6 +6,7 @@ import Products from './components/04day/Products'
 import Register from './components/03day/Register'
 import Pagenotfound from './components/10day/Pagenotfound'
 import Cart from './components/10day/Cart'
+import RestAPIDemo from './components/12day/RestAPIDemo'
 
 const Routing = () => {
   return (
@@ -19,8 +20,10 @@ const Routing = () => {
                 <Route path='' element={<Home/>}/>
                 <Route path='products' element={<Products/>}/>
                 <Route path='cart' element={<Cart/>}/>
+                <Route path='rest' element={<RestAPIDemo/>}/>
             </Route>
             <Route path='/reg' element={<Register/>}/>
+            
           <Route path="*" element={<Pagenotfound/>}/>
       </Routes>
 
