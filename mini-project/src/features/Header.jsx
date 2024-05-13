@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Button, NavDropdown,Form } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { FaLock, FaPenAlt, FaShoppingCart } from "react-icons/fa";
 import { FaPen } from 'react-icons/fa6';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { ShowOnLogin, ShowOnLogout } from './hiddenlinks';
+import { DataContext } from './ContextforCart';
 const Header = () => {
+  const data=useContext(DataContext)
 const navigate=useNavigate()
   let handleLogout=()=>{
     sessionStorage.removeItem("logindetails")
@@ -48,8 +50,8 @@ const navigate=useNavigate()
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
-            <Nav.Link href="#action1"><FaShoppingCart size={30}/>
-            <span class="badge rounded-pill text-bg-primary">0</span >
+            <Nav.Link  as={Link} to='/cart'><FaShoppingCart size={30}/>
+            <span class="badge rounded-pill text-bg-primary">{data.cart.length}</span >
             
             </Nav.Link>
 

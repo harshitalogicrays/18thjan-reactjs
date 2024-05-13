@@ -1,9 +1,12 @@
 import React, { useContext } from 'react'
+import { DataContext } from './ContextforCart'
 
 const ProductCard = ({product}) => {
     let {id,name,image,price,category,stock}=product
+    let data = useContext(DataContext)
+    let {ADD_TO_CART,cart}=data
     let handleCart=()=>{
-        // ADD_TO_CART(product)
+        ADD_TO_CART(product)
     }
   return (
     <div className="col-3 mb-3">

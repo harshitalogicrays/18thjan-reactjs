@@ -10,6 +10,7 @@ import AdminDashboard from "./features/Admin/AdminDashboard";
 import AdminLayout from "./features/Admin/AdminLayout";
 import ViewProduct from "./features/Admin/ViewProduct";
 import AddProduct from "./features/Admin/AddProduct";
+import Cart from "./features/Cart";
 
 const routerPath = createBrowserRouter([
     {
@@ -20,6 +21,7 @@ const routerPath = createBrowserRouter([
         {path:'login',element:<Login/>},
         {path:'register',element:<Register/>},
         {path:'products',element:<Products/>},   
+        {path:'cart',element:<Cart/>},   
       ]
     },
     {path:'/admin',element:<AdminLayout></AdminLayout>,
@@ -27,6 +29,7 @@ const routerPath = createBrowserRouter([
      {path:'',element:<AdminDashboard/>},
     {path:'viewproducts',element:<ViewProduct/>},
     {path:'addproduct',element:<AddProduct/>},
+    {path:'editproduct/:id',element:<AddProduct/>},
       ]
   },
     {path:'*',element:<Pagenotfound/>}

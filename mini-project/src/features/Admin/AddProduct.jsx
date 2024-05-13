@@ -1,7 +1,7 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Card,  Container,  Form,   Row } from 'react-bootstrap'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 const AddProduct = () => {
@@ -9,6 +9,25 @@ const AddProduct = () => {
     let addProductsSet={name:'',price:'',category:'',image:'',brand:'',desc:'',stock:''}
     const [product,setProduct]=useState({...addProductsSet})
     const navigate=useNavigate()
+
+    //edit 
+   const {id} = useParams()
+//    console.log(id)
+    useEffect(()=>{
+        if(id) getData()
+        else setProduct({...addProductsSet})
+    },[id])
+    let getData=async()=>{
+        try{
+           let res = await axios.get(`https://662f214343b6a7dce30e77c5.mockapi.io/products/${id}`)
+           setProduct(res.data)
+        }
+        catch(err){toast.error(err.message)}
+    }
+
+    // ============================================
+
+
     let handleImage=(e)=>{
         // console.log(e.target.files[0])
         let file =e.target.files[0]
@@ -22,12 +41,23 @@ const AddProduct = () => {
     let handleSubmit=async(e)=>{
         e.preventDefault()
         // alert(JSON.stringify(product))
-        try{
-        await axios.post("https://662f214343b6a7dce30e77c5.mockapi.io/products",product)
-            toast.success('product added')
-            navigate('/admin/viewproducts')
+        if(!id){//add product
+            try{
+                await axios.post("https://662f214343b6a7dce30e77c5.mockapi.io/products",product)
+                    toast.success('product added')
+                    navigate('/admin/viewproducts')
+                }
+                catch(error){toast.error(error.message)}
         }
-        catch(error){toast.error(error.message)}
+        else {//udpate product
+            try{
+                await axios.put(`https://662f214343b6a7dce30e77c5.mockapi.io/products/${id}`,product)
+                    toast.success('product updated')
+                    navigate('/admin/viewproducts')
+                }
+                catch(error){toast.error(error.message)}
+        }
+      
         
     }
   return (
@@ -35,7 +65,7 @@ const AddProduct = () => {
         <Container  className='mt-5'>
             <Card>
                 <Card.Header>
-                    <h1>Add Product
+                    <h1>{id? "Edit " :"Add "} Product
                         <Button variant='danger' className='float-end btn-lg' as={Link} to='/admin/viewproducts'>View  Products</Button>
                     </h1>
                 </Card.Header>
@@ -72,13 +102,16 @@ const AddProduct = () => {
                                         <Form.Label> file upload </Form.Label>
                                         <Form.Control type="file" name="image" onChange={handleImage} />
                                     </Form.Group>
+                                    {id && <img src={product.image} height={50} width={50}/>}
                                     <Form.Group controlId="formFile" className="mb-3">
                                         <Form.Label>Description</Form.Label>
                                   
                                         <Form.Control as="textarea" name='desc' value={product.desc} onChange={(e)=>setProduct({...product,desc:e.target.value})}/>
                                     </Form.Group>
                                     <Button variant='primary' type="submit" 
-                                  >Submit</Button>
+                                  >
+                                    {id ? "Update ": "Submit"}
+                                    </Button>
                                 </Form>
                 </Card.Body>
             </Card>

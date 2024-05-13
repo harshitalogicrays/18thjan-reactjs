@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Button, Card, Container, Table } from 'react-bootstrap'
 import { FaPenAlt, FaTrashAlt } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 const ViewProduct = () => {
     let [products,setProducts]=useState([])
@@ -16,6 +17,14 @@ const ViewProduct = () => {
            setProducts(res.data)
         }
         catch(err){toast.error(err.message)}
+    }
+
+    let handleDelete=async(id)=>{
+        if(window.confirm("are you sure to delete this??")){
+            await axios.delete(`https://662f214343b6a7dce30e77c5.mockapi.io/products/${id}`)       
+            getData()
+            toast.success("product deleted")
+        }
     }
   return (
   <>
@@ -46,8 +55,10 @@ const ViewProduct = () => {
             <td><img src={product.image} height="50px" width={50}/></td>
             <td>{product.price}</td>
             <td>{product.stock}</td>
-            <td> <Link type="button" class="btn btn-success me-2"><FaPenAlt/></Link>
-                 <button type="button" class="btn btn-danger me-2" ><FaTrashAlt/></button>
+            <td> <Link type="button" class="btn btn-success me-2" 
+            to={`/admin/editproduct/${product.id}`}><FaPenAlt/></Link>
+                 <button type="button" class="btn btn-danger me-2" 
+                 onClick={()=>handleDelete(product.id)}><FaTrashAlt/></button>
              </td>
             </tr>
         )}      
