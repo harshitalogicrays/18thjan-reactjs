@@ -1,5 +1,4 @@
 import { createSlice ,nanoid} from "@reduxjs/toolkit";
-
 const userSlice=createSlice({
     name:"user",
     initialState:{users:[]},
@@ -19,9 +18,7 @@ const userSlice=createSlice({
         }
     }
 })
-
 console.log(userSlice.actions)
 export const {ADD_USER,REMOVE_ALL_USERS,REMOVE_USER}=userSlice.actions
 export default userSlice
-
 export const selectUsers=(state)=>state.user.users
