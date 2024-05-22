@@ -7,27 +7,30 @@ import { FaLock, FaPenAlt, FaShoppingCart } from "react-icons/fa";
 import { FaPen } from 'react-icons/fa6';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { ShowOnLogin, ShowOnLogout } from './hiddenlinks';
-import { auth } from '../firebase/config';
-import { signOut } from 'firebase/auth';
+import { Logout, ShowOnLogin, ShowOnLogout } from './hiddenlinks';
+import { auth, db } from '../firebase/config';
+import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { doc, getDoc } from 'firebase/firestore';
+import { useDispatch, useSelector } from 'react-redux';
+import { LogInUser, LogoutUser, selectUserName } from '../redux/authSlice';
 const Header = () => {
  const navigate=useNavigate()
-  let handleLogout=()=>{
-    signOut(auth).then(() => {
-      toast.success("loggedOut Successfully")
-      navigate('/')
-    }).catch((error) => {
-     toast.error(error.message)
-    }); 
-  }
+ const dispatch=useDispatch()
 
-  let [username,setUsename]=useState('')
   useEffect(()=>{
-    if(sessionStorage.getItem("logindetails") != null){
-      let obj=JSON.parse(sessionStorage.getItem("logindetails"))
-      setUsename(obj.name)
-    }
-  },[ sessionStorage.getItem("logindetails")])
+    onAuthStateChanged(auth, async(user) => {
+      if (user) {
+           const uid = user.uid;
+           const docRef = doc(db,"users",uid)
+           const docSnap = await getDoc(docRef)
+           let obj={email:docSnap.data().email , name:docSnap.data().username , id :uid , role:docSnap.data().role}
+          dispatch(LogInUser(obj))
+      } else {
+          dispatch(LogoutUser())
+       }
+    });
+  },[auth])
+ const username = useSelector(selectUserName)
   return (
     <Navbar expand="lg" bg="dark" data-bs-theme="dark">
       <Container fluid>
@@ -71,7 +74,9 @@ const Header = () => {
                 </ShowOnLogout>
                 <ShowOnLogin>
                     <Nav.Link style={{color:'white'}}>Welcome {username}</Nav.Link>
-                    <Nav.Link onClick={handleLogout} style={{color:'white'}}><FaLock/> Logout</Nav.Link>
+                    <Nav.Link  style={{color:'white'}}>
+                      <Logout></Logout>
+                    </Nav.Link>
                 </ShowOnLogin>
             </Nav>
         </Navbar.Collapse>

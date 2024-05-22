@@ -6,7 +6,7 @@ import {toast} from 'react-toastify'
 import Loader from './Loader'
 import { auth, db } from '../firebase/config'
 import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth'
-import { doc, getDoc } from 'firebase/firestore'
+import { Timestamp, doc, getDoc, setDoc } from 'firebase/firestore'
 const Login = () => {
   const {register,handleSubmit, formState: { errors },trigger}=useForm()
   const navigate=useNavigate()
@@ -44,8 +44,10 @@ const Login = () => {
     const provider = new GoogleAuthProvider();
     let loginWithGoogle=()=>{
       signInWithPopup(auth, provider)
-      .then((result) => {
-          const user = result.user;
+      .then(async(result) => {
+          const user1 = result.user;
+          const docRef = doc(db,"users",user1.uid)
+          await setDoc(docRef,{username:user1.displayName,email:user1.email,role:'1',createdAt:Timestamp.now().toMillis() })                 
           toast.success("loggedIn Successfully")
           navigate('/') 
         }).catch((error) => {

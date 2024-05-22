@@ -8,6 +8,9 @@ import Products from "./features/Products";
 import Pagenotfound from "./features/Pagenotfound";
 import Cart from "./features/Cart";
 import Dashboard from "./features/Admin/Dashboard";
+import AdminLayout from "./features/Admin/AdminLayout";
+import AddCategory from "./features/Admin/AddCategory";
+import ViewCategory from "./features/Admin/ViewCategory";
 
 const routerPath = createBrowserRouter([
     {
@@ -21,7 +24,14 @@ const routerPath = createBrowserRouter([
         {path:'cart',element:<Cart/>},   
       ]
     },
-    {path:'/admin',element:<Dashboard/>},
+    {path:'/admin',element:<AdminLayout></AdminLayout>,
+    children :[
+      {path:'',element:<Dashboard/>},
+      {path:'addcategory',element:<AddCategory/>},
+      {path:'viewcategory',element:<ViewCategory/>},
+      
+    ]
+  },
     {path:'*',element:<Pagenotfound/>}
   ]);
 
