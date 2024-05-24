@@ -1,14 +1,23 @@
+import { Timestamp, addDoc, collection } from 'firebase/firestore'
 import React, { useState } from 'react'
 import { Button,Form, Card } from 'react-bootstrap'
 import {  Link, useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import { db } from '../../firebase/config'
 
 const AddCategory = () => {
     let [category,setCategory]=useState({title:'',desc:'',status:''})
     let [isActive,setIsActive]=useState(false)
     const navigate=useNavigate()
-    let handleSubmit=(e)=>{
+    let handleSubmit=async(e)=>{
         e.preventDefault()
-        alert(JSON.stringify(category))
+        try{
+            const docRef = collection(db,"categories")
+            await addDoc(docRef,{...category, status:isActive ? "Active":"Inactive",createdAt:Timestamp.now().toMillis()})
+            toast.success("Category Added")
+            navigate('/admin/viewcategory')
+        }
+        catch(err){toast.error(err.message)}
     }
   return (
    <>

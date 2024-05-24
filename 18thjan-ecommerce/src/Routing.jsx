@@ -29,7 +29,7 @@ const routerPath = createBrowserRouter([
       {path:'',element:<Dashboard/>},
       {path:'addcategory',element:<AddCategory/>},
       {path:'viewcategory',element:<ViewCategory/>},
-      
+      {path:'editcategory/:id',element:<AddCategory/>},
     ]
   },
     {path:'*',element:<Pagenotfound/>}

@@ -1,9 +1,34 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Button, Card, Table } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import useFetchCollection from '../../customhook/useFetchCollection'
+import { FaPenAlt, FaTrashAlt } from 'react-icons/fa'
+import { useDispatch, useSelector } from 'react-redux'
+import { STORE_CATEGORIES, selectCategories } from '../../redux/categorySlice'
+import { toast } from 'react-toastify'
+import { deleteDoc, doc } from 'firebase/firestore'
+import { db } from '../../firebase/config'
 
 const ViewCategory = () => {
-  return (
+  const {data,isLoading} = useFetchCollection("categories")
+  const dispatch=useDispatch()
+  useEffect(()=>{
+    dispatch(STORE_CATEGORIES(data))
+  },[data])
+
+  const categories = useSelector(selectCategories)
+
+  let handleDelete=async(id)=>{
+    if(window.confirm('are you sure to delete this??')){
+      try{
+          const docRef = doc(db,"categories",id)
+          await deleteDoc(docRef)
+          toast.success("Category deleted")
+      }
+      catch(err){toast.error(err.message)}
+    }
+  }
+    return (
     <Card>
         <Card.Header>
             <h1>View Category <Button variant='danger' size="lg" className='float-end' as={Link} to='/admin/addcategory'>Add Category</Button></h1>
@@ -20,7 +45,7 @@ const ViewCategory = () => {
           <th>Action</th>
         </tr>
       </thead>
-      {/* <tbody>
+      <tbody>
         {categories.length==0 &&  <tr><td colSpan={6}>No Category Found</td></tr>}
       {categories.map((c,i)=>
           <tr key={c.id}>
@@ -39,7 +64,7 @@ const ViewCategory = () => {
             </td>
           </tr>
           )}
-      </tbody> */}
+      </tbody>
     </Table>
         </Card.Body>
     </Card>
