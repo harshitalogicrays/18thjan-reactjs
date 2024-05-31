@@ -21,8 +21,10 @@ const ViewProduct = () => {
    let handleDelete=async(id,images)=>{
     if(window.confirm('are you sure to delete this??')){
       try{
-        const docRef=doc(db,"products",id)
-         toast.success("product deleted")
+       const docRef=doc(db,"products",id)
+       images.forEach((img)=>deleteObject(ref(storage,img)))
+       deleteDoc(docRef)
+       toast.success("product deleted")
       }
       catch(err){toast.error(err.message)}
     }

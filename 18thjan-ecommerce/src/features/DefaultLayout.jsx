@@ -7,10 +7,8 @@ const DefaultLayout = ({children}) => {
   return (
     <>
             <Header/>
-            <Container className="mt-5">
                 {children}
-            </Container>
-        <Footer/>  
+         <Footer/>  
     </>
     )
 }
