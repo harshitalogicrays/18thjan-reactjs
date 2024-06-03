@@ -13,6 +13,7 @@ import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 import { useDispatch, useSelector } from 'react-redux';
 import { LogInUser, LogoutUser, selectUserName } from '../redux/authSlice';
+import { selectCart } from '../redux/cartSlice';
 const Header = () => {
  const navigate=useNavigate()
  const dispatch=useDispatch()
@@ -31,7 +32,9 @@ const Header = () => {
     });
   },[auth])
  const username = useSelector(selectUserName)
-  return (
+
+ const cart = useSelector(selectCart)
+  return (  
     <Navbar expand="lg" bg="dark" data-bs-theme="dark">
       <Container fluid>
         <Navbar.Brand href="#">mini pro</Navbar.Brand>
@@ -51,13 +54,18 @@ const Header = () => {
                 fontWeight: isActive ? "bold" : "", color: isActive ? "red" : "white",
                 }}}  to='/products'>Products</Nav.Link>
           </Nav>
+                <Form className='me-2'>
+                <Form.Control placeholder='search by name and category' name="search"></Form.Control>
+
+                </Form>
+          
           <Nav
             className="my-2 my-lg-0"
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
             <Nav.Link  as={Link} to='/cart'><FaShoppingCart size={30}/>
-            <span class="badge rounded-pill text-bg-primary">0</span >
+            <span class="badge rounded-pill text-bg-primary">{cart.length}</span >
             
             </Nav.Link>
 
