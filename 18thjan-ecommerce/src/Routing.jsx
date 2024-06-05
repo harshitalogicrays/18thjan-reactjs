@@ -15,6 +15,8 @@ import AddSlider from "./features/Admin/AddSlider";
 import ViewSlider from "./features/Admin/ViewSlider";
 import AddProduct from "./features/Admin/AddProduct";
 import ViewProduct from "./features/Admin/ViewProduct";
+import ProductDetails from "./features/ProductDetails";
+import { ProtectedAdmin } from "./features/hiddenlinks";
 
 const routerPath = createBrowserRouter([
     {
@@ -25,10 +27,11 @@ const routerPath = createBrowserRouter([
         {path:'login',element:<Login/>},
         {path:'register',element:<Register/>},
         {path:'products',element:<Products/>},   
+        {path:'product-details/:id',element:<ProductDetails/>}, 
         {path:'cart',element:<Cart/>},   
       ]
     },
-    {path:'/admin',element:<AdminLayout></AdminLayout>,
+    {path:'/admin',element:<ProtectedAdmin><AdminLayout></AdminLayout></ProtectedAdmin>,
     children :[
       {path:'',element:<Dashboard/>},
       {path:'addcategory',element:<AddCategory/>},

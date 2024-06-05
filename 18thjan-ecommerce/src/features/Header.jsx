@@ -14,6 +14,8 @@ import { doc, getDoc } from 'firebase/firestore';
 import { useDispatch, useSelector } from 'react-redux';
 import { LogInUser, LogoutUser, selectUserName } from '../redux/authSlice';
 import { selectCart } from '../redux/cartSlice';
+import { FILTER_BY_SEARCH } from '../redux/filterSlice';
+import useFetchCollection from '../customhook/useFetchCollection';
 const Header = () => {
  const navigate=useNavigate()
  const dispatch=useDispatch()
@@ -34,6 +36,15 @@ const Header = () => {
  const username = useSelector(selectUserName)
 
  const cart = useSelector(selectCart)
+
+ //search
+ const [search,setSearch]=useState('')
+ const {data:products}=useFetchCollection("products")
+ useEffect(()=>{
+  dispatch(FILTER_BY_SEARCH({products,search}))
+  if(search !='')
+      navigate('/products')
+ },[search])
   return (  
     <Navbar expand="lg" bg="dark" data-bs-theme="dark">
       <Container fluid>
@@ -55,7 +66,8 @@ const Header = () => {
                 }}}  to='/products'>Products</Nav.Link>
           </Nav>
                 <Form className='me-2'>
-                <Form.Control placeholder='search by name and category' name="search"></Form.Control>
+                <Form.Control placeholder='search by name and category' name="search"
+                value={search} onChange={(e)=>setSearch(e.target.value)}></Form.Control>
 
                 </Form>
           
