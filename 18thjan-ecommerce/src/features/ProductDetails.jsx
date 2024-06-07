@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import { selectproducts } from '../redux/productSlice'
 import { ADD_TO_CART, DECREASE, selectCart } from '../redux/cartSlice'
 import { Button } from 'react-bootstrap'
+import ImageThumbnail from './ImageThumbnail'
 
 const ProductDetails = () => {
     const {id}=useParams()
@@ -18,7 +19,9 @@ const ProductDetails = () => {
   return (
     <div className='container mt-5'>
         <div className="row">
-            <div className="col">images</div>
+            <div className="col">
+              <ImageThumbnail images={product.image}/>
+            </div>
             <div className="col">
             {product.stock > 0 ? 
             <span  class="badge rounded-pill text-bg-success float-end">In Stock</span>

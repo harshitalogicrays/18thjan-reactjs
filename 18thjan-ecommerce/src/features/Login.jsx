@@ -7,10 +7,19 @@ import Loader from './Loader'
 import { auth, db } from '../firebase/config'
 import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth'
 import { Timestamp, doc, getDoc, setDoc } from 'firebase/firestore'
+import { useSelector } from 'react-redux'
+import { selectURL } from '../redux/cartSlice'
 const Login = () => {
   const {register,handleSubmit, formState: { errors },trigger}=useForm()
   const navigate=useNavigate()
   const [isLoading,setIsLoading]=useState(false)
+
+  const url = useSelector(selectURL)
+  let redirectURL=()=>{
+    if(url.includes('cart')){navigate('/cart')}
+    else navigate('/')
+  } 
+
     let submitForm=async(user)=>{
       setIsLoading(true)
         try{
@@ -26,7 +35,8 @@ const Login = () => {
                 navigate('/admin') 
               }
               else if(data.role == "1"){
-                navigate('/') 
+                // navigate('/') 
+                redirectURL()
               }
             }
             toast.success("loggedIn Successfully")
@@ -49,7 +59,8 @@ const Login = () => {
           const docRef = doc(db,"users",user1.uid)
           await setDoc(docRef,{username:user1.displayName,email:user1.email,role:'1',createdAt:Timestamp.now().toMillis() })                 
           toast.success("loggedIn Successfully")
-          navigate('/') 
+          // navigate('/') 
+          redirectURL()
         }).catch((error) => {
           toast.error(error.message)
       })

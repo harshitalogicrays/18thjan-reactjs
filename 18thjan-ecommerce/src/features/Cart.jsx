@@ -1,7 +1,9 @@
 import React, { useContext, useEffect } from 'react'
 import { Col, Container, Row, Table } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { ADD_TO_CART, CALCULATE_TOTAL, DECREASE, EMPTY_CART, REMOVE_ITEM, selectAmount, selectCart } from '../redux/cartSlice'
+import { ADD_TO_CART, CALCULATE_TOTAL, DECREASE, EMPTY_CART, REMOVE_ITEM, SAVE_URL, selectAmount, selectCart } from '../redux/cartSlice'
+import { selectIsLoggedIn } from '../redux/authSlice'
+import { useNavigate } from 'react-router-dom'
 
 const Cart = () => {
     const cart = useSelector(selectCart)
@@ -9,6 +11,17 @@ const Cart = () => {
     const dispatch=useDispatch()
     useEffect(()=>{
         dispatch(CALCULATE_TOTAL())},[cart])
+    
+    const isLoggedIn=useSelector(selectIsLoggedIn)
+    const navigate=useNavigate()
+    let url=window.location.href
+    let handleCheckout=()=>{
+        if(isLoggedIn){navigate('/checkout-details')}
+        else {
+            dispatch(SAVE_URL(url))
+            navigate('/login')
+        }
+    }
   return (
    <> <Container className='mt-5 '>
         <h1>Cart Page</h1><hr/>
@@ -42,7 +55,9 @@ const Cart = () => {
             <Col xs={3}>
                 <h1>Total: <span className='float-end'>${total}</span></h1>
                 <div class="d-grid gap-2">
-                    <button type="button" class="btn btn-primary">Checkout </button>
+                    <button type="button" class="btn btn-primary" onClick={handleCheckout}
+                        disabled={cart.length==0 ? 'disabled':''}
+                    >Checkout </button>
                 </div>       
             </Col>
         </Row>

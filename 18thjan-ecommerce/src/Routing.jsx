@@ -16,7 +16,8 @@ import ViewSlider from "./features/Admin/ViewSlider";
 import AddProduct from "./features/Admin/AddProduct";
 import ViewProduct from "./features/Admin/ViewProduct";
 import ProductDetails from "./features/ProductDetails";
-import { ProtectedAdmin } from "./features/hiddenlinks";
+import { Protected, ProtectedAdmin } from "./features/hiddenlinks";
+import CheckoutDetails from "./features/CheckoutDetails";
 
 const routerPath = createBrowserRouter([
     {
@@ -29,6 +30,7 @@ const routerPath = createBrowserRouter([
         {path:'products',element:<Products/>},   
         {path:'product-details/:id',element:<ProductDetails/>}, 
         {path:'cart',element:<Cart/>},   
+        {path:'checkout-details',element:<Protected><CheckoutDetails/></Protected>}
       ]
     },
     {path:'/admin',element:<ProtectedAdmin><AdminLayout></AdminLayout></ProtectedAdmin>,
