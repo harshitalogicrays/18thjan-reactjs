@@ -92,8 +92,13 @@ const Header = () => {
                     backgroundColor:isActive ? "yellow":''
                     }}}  to='/login'><FaLock/> Login</Nav.Link>
                 </ShowOnLogout>
-                <ShowOnLogin>
+                <ShowOnLogin>                 
                     <Nav.Link style={{color:'white'}}>Welcome {username}</Nav.Link>
+                    <Nav.Link as={NavLink}  style={({ isActive}) => {
+                    return {
+                    fontWeight: isActive ? "bold" : "", color: isActive ? "red" : "white",
+                    backgroundColor:isActive ? "yellow":''
+                    }}}  to='/myorders'>My Orders</Nav.Link>
                     <Nav.Link  style={{color:'white'}}>
                       <Logout></Logout>
                     </Nav.Link>

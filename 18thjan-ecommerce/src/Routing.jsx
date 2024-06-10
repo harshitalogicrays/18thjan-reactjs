@@ -18,6 +18,12 @@ import ViewProduct from "./features/Admin/ViewProduct";
 import ProductDetails from "./features/ProductDetails";
 import { Protected, ProtectedAdmin } from "./features/hiddenlinks";
 import CheckoutDetails from "./features/CheckoutDetails";
+import Checkout from "./features/Checkout";
+import CheckoutSuccess from "./features/CheckoutSuccess";
+import MyOrders from "./features/MyOrders";
+import MyOrderDetails from "./features/MyOrderDetails";
+import Orders from "./features/Admin/Orders";
+import OrderDetails from "./features/Admin/OrderDetails";
 
 const routerPath = createBrowserRouter([
     {
@@ -30,7 +36,11 @@ const routerPath = createBrowserRouter([
         {path:'products',element:<Products/>},   
         {path:'product-details/:id',element:<ProductDetails/>}, 
         {path:'cart',element:<Cart/>},   
-        {path:'checkout-details',element:<Protected><CheckoutDetails/></Protected>}
+        {path:'checkout-details',element:<Protected><CheckoutDetails/></Protected>},
+        {path:'checkout',element:<Protected><Checkout/></Protected>},
+        {path:'checkout-success',element:<Protected><CheckoutSuccess/></Protected>},
+        {path:'myorders',element:<Protected><MyOrders/></Protected>},
+        {path:'myorders/details/:id',element:<Protected><MyOrderDetails/></Protected>},
       ]
     },
     {path:'/admin',element:<ProtectedAdmin><AdminLayout></AdminLayout></ProtectedAdmin>,
@@ -45,6 +55,8 @@ const routerPath = createBrowserRouter([
       {path:'addproduct',element:<AddProduct/>},
       {path:'viewproduct',element:<ViewProduct/>},
       {path:'editproduct/:id',element:<AddProduct/>},
+      {path:'orders',element:<Orders/>},
+      {path:'orders/details/:id',element:<OrderDetails/>},
     ]
   },
     {path:'*',element:<Pagenotfound/>}

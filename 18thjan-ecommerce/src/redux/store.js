@@ -6,6 +6,7 @@ import productSlice from "./productSlice";
 import cartSlice from "./cartSlice";
 import filterSlice from "./filterSlice";
 import checkoutSlice from "./checkoutSlice";
+import orderSlice from "./orderSlice";
 
 const store=configureStore({
 reducer:{
@@ -16,6 +17,7 @@ reducer:{
     cart:cartSlice.reducer,
     filter:filterSlice.reducer,
     checkout:checkoutSlice.reducer,
+    order:orderSlice.reducer,
 }
 })
 export default store

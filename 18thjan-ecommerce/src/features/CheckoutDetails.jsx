@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Col, Container, Form, Row } from 'react-bootstrap'
 import CheckoutSummary from './CheckoutSummary'
-import { useDispatch } from 'react-redux'
-import { STORE_ADDRESS } from '../redux/checkoutSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { STORE_ADDRESS, selectShippingAddress } from '../redux/checkoutSlice'
 import { useNavigate } from 'react-router-dom'
 
 const CheckoutDetails = () => {
@@ -15,6 +15,14 @@ const CheckoutDetails = () => {
         // alert(JSON.stringify(shippingAddress))
         dispatch(STORE_ADDRESS(shippingAddress))
         navigate('/checkout')}
+    
+    const address=useSelector(selectShippingAddress)
+    useEffect(()=>{
+        if(Object.keys(address).length !=0){
+            setShippingAddress({...address})
+        }
+        else setShippingAddress({...initialvalues})
+    },[address])
   return (
     <> <Container className='mt-5 shadow p-3'>
         <Row><Col>
